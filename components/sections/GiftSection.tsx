@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import FloralOrnament from "@/components/ui/FloralOrnament";
+import FloatingPetals from "@/components/ui/FloatingPetals";
 
 interface BankAccount {
   bank: string;
@@ -109,13 +111,13 @@ function AccountCard({ account }: { account: BankAccount }) {
 const accounts: BankAccount[] = [
   {
     bank: "BCA",
-    name: "Ahmad Fauzi",
+    name: "Firdan Nursalfah Toni",
     number: "1234567890",
     logo: null,
   },
   {
     bank: "BNI",
-    name: "Siti Nurhaliza",
+    name: "Amelia Firdausya",
     number: "0987654321",
     logo: null,
   },
@@ -123,7 +125,10 @@ const accounts: BankAccount[] = [
 
 export default function GiftSection() {
   return (
-    <section className="relative w-full bg-[#FAF3E8] px-6 py-20">
+    <section className="relative w-full overflow-hidden bg-[#FAF3E8] px-6 py-20">
+      <FloralOrnament position="top-right"   size={120} opacity={0.3} />
+      <FloralOrnament position="bottom-left" size={120} opacity={0.3} />
+      <FloatingPetals count={8} />
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -182,7 +187,7 @@ export default function GiftSection() {
           className="mt-4 text-4xl text-[#6B4F36]"
           style={{ fontFamily: "'Great Vibes', cursive" }}
         >
-          Ahmad Fauzi & Siti Nurhaliza
+          Firdan Nursalfah Toni &amp; Amelia Firdausya
         </p>
         <p
           className="mt-2 text-xs text-[#9B8B78]"

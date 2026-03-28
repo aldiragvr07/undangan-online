@@ -14,18 +14,32 @@ html {
 }
 
 body {
-  background-color: var(--cream);
+  background-color: #2d1b0e; /* dark bg outside card */
   color: var(--dark);
 }
 
+/* Max-width wrapper agar tidak melar di desktop */
+main {
+  min-height: 100dvh;
+}
+
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* Prevent horizontal scroll */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
-::-webkit-scrollbar-track {
-  background: var(--cream);
+
+/* Semua section: pastikan tidak overflow ke kiri/kanan */
+section {
+  overflow-x: hidden;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--gold);
-  border-radius: 3px;
+
+/* Input & textarea mobile fix */
+input, select, textarea {
+  width: 100%;
+  font-size: 16px; /* prevent iOS zoom on focus */
 }
