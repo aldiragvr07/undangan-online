@@ -10,24 +10,33 @@ const stories = [
     tahun: "2020",
     judul: "Pertama Bertemu",
     isi: "Takdir mempertemukan kami untuk pertama kali di sebuah kesempatan yang tidak pernah kami duga. Sebuah pertemuan sederhana yang ternyata menjadi awal dari segalanya.",
-    color: "#F5ECD8",
+    color: "#6B4F36",
     accent: "#C4A882",
+    yearColor: "#D4B896",
+    titleColor: "#F5ECD8",
+    textColor: "#D4C4AE",
   },
   {
     emoji: "💌",
     tahun: "2021",
     judul: "Berpacaran",
     isi: "Dari teman menjadi lebih dari sekadar teman. Perjalanan indah dimulai — belajar saling mengenal, saling memahami, dan menemukan kecocokan di setiap langkah.",
-    color: "#EDE4D4",
-    accent: "#8B7355",
+    color: "#8B6340",
+    accent: "#E6C9A4",
+    yearColor: "#E6C9A4",
+    titleColor: "#FAF3E8",
+    textColor: "#DDD0BE",
   },
   {
     emoji: "💍",
     tahun: "2026",
     judul: "Menuju Pelaminan",
     isi: "Dan kini, dengan ridho Allah SWT dan restu kedua orang tua, kami siap melangkah ke babak baru kehidupan bersama. Menyatukan dua keluarga dalam satu ikatan suci.",
-    color: "#F5ECD8",
+    color: "#5C3D28",
     accent: "#C4A882",
+    yearColor: "#D4B896",
+    titleColor: "#F5ECD8",
+    textColor: "#D4C4AE",
   },
 ];
 
@@ -92,9 +101,9 @@ export default function LoveStorySection() {
                 transition={{ delay: i * 0.12 + 0.25, type: "spring", stiffness: 200 }}
                 className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg shadow-md"
                 style={{
-                  backgroundColor: s.color,
-                  border: `2.5px solid ${s.accent}`,
-                  marginLeft: "-20px", // center dot on the line
+                  backgroundColor: s.accent,
+                  border: `2.5px solid ${s.yearColor}`,
+                  marginLeft: "-20px",
                 }}
               >
                 {s.emoji}
@@ -102,24 +111,24 @@ export default function LoveStorySection() {
 
               {/* Kartu */}
               <div
-                className="flex-1 rounded-2xl p-5 shadow-sm"
+                className="flex-1 rounded-2xl p-5 shadow-md"
                 style={{ backgroundColor: s.color }}
               >
                 <p
-                  className="mb-1 text-[10px] font-semibold tracking-widest text-[#9B8B78]"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  className="mb-1 text-[10px] font-semibold tracking-widest"
+                  style={{ fontFamily: "'Montserrat', sans-serif", color: s.yearColor }}
                 >
                   {s.tahun}
                 </p>
                 <h3
-                  className="mb-2 text-xl leading-snug text-[#3D2B1F]"
-                  style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+                  className="mb-2 text-xl leading-snug"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", color: s.titleColor }}
                 >
                   {s.judul}
                 </h3>
                 <p
-                  className="text-sm leading-relaxed text-[#7A6555]"
-                  style={{ fontFamily: "'Lora', serif" }}
+                  className="text-sm leading-relaxed"
+                  style={{ fontFamily: "'Lora', serif", color: s.textColor }}
                 >
                   {s.isi}
                 </p>

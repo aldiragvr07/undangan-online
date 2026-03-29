@@ -1,40 +1,39 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 // ─── KONFIGURASI FOTO ───────────────────────────────────────────────────────
 // Tambahkan foto Anda di sini. Taruh file foto ke folder public/
 // dan sesuaikan path-nya.
 const BRIDE_PHOTOS = [
   { src: "/foto-profile-amel.JPG",   alt: "Amelia 1" },
-  { src: "/foto-cover.jpg",           alt: "Amelia 2" },
-  { src: "/foto-profile-amel.JPG",   alt: "Amelia 3" },
-  { src: "/foto-cover.jpg",           alt: "Amelia 4" },
-  { src: "/foto-profile-amel.JPG",   alt: "Amelia 5" },
+  { src: "/foto-profile-amel2.JPG",  alt: "Amelia 2" },
+  { src: "/foto-profile-amel3.JPG",  alt: "Amelia 3" },
+  { src: "/foto-profile-amel4.JPG",  alt: "Amelia 4" },
+  { src: "/foto-profile-amel5.JPG",  alt: "Amelia 5" },
   // Duplikat untuk loop mulus
   { src: "/foto-profile-amel.JPG",   alt: "Amelia 1b" },
-  { src: "/foto-cover.jpg",           alt: "Amelia 2b" },
-  { src: "/foto-profile-amel.JPG",   alt: "Amelia 3b" },
+  { src: "/foto-profile-amel2.JPG",  alt: "Amelia 2b" },
+  { src: "/foto-profile-amel3.JPG",  alt: "Amelia 3b" },
 ];
 
 const GROOM_PHOTOS = [
   { src: "/foto-profile-firdan.JPG", alt: "Firdan 1" },
-  { src: "/foto-cover.jpg",           alt: "Firdan 2" },
-  { src: "/foto-profile-firdan.JPG", alt: "Firdan 3" },
-  { src: "/foto-cover.jpg",           alt: "Firdan 4" },
-  { src: "/foto-profile-firdan.JPG", alt: "Firdan 5" },
+  { src: "/foto-profile-firdan2.jpg", alt: "Firdan 2" },
+  { src: "/foto-profile-firdan3.JPG", alt: "Firdan 3" },
+  { src: "/foto-profile-firdan4.JPG", alt: "Firdan 4" },
+  { src: "/foto-profile-firdan5.JPG", alt: "Firdan 5" },
   // Duplikat untuk loop mulus
   { src: "/foto-profile-firdan.JPG", alt: "Firdan 1b" },
-  { src: "/foto-cover.jpg",           alt: "Firdan 2b" },
-  { src: "/foto-profile-firdan.JPG", alt: "Firdan 3b" },
+  { src: "/foto-profile-firdan2.jpg", alt: "Firdan 2b" },
+  { src: "/foto-profile-firdan3.JPG", alt: "Firdan 3b" },
 ];
 // ────────────────────────────────────────────────────────────────────────────
 
-const PHOTO_W = 200;   // lebar tiap foto dalam px
-const PHOTO_H = 260;   // tinggi tiap foto dalam px
-const GAP     = 12;    // jarak antar foto
-const SPEED   = 35;    // detik untuk selesai 1 putaran (lebih kecil = lebih cepat)
+const PHOTO_W = 130;   // lebar tiap foto dalam px
+const PHOTO_H = 190;   // tinggi tiap foto dalam px
+const GAP     = 10;    // jarak antar foto
+const DURATION = 45;   // detik 1 putaran (lebih kecil = lebih cepat)
 
 interface AutoScrollStripProps {
   photos: { src: string; alt: string }[];
@@ -42,39 +41,38 @@ interface AutoScrollStripProps {
 }
 
 function AutoScrollStrip({ photos, direction = "left" }: AutoScrollStripProps) {
-  const controls = useAnimation();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: false, amount: 0.1 });
+  // Duplikasi foto agar loop terlihat infinite
+  const doubled = [...photos, ...photos];
 
-  const totalW = photos.length * (PHOTO_W + GAP);
-
-  useEffect(() => {
-    if (!inView) return;
-
-    const fromX = direction === "left" ? 0 : -(totalW / 2);
-    const toX   = direction === "left" ? -(totalW / 2) : 0;
-
-    controls.start({
-      x: [fromX, toX],
-      transition: {
-        duration: SPEED,
-        ease: "linear",
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-    });
-
-    return () => { controls.stop(); };
-  }, [inView, controls, direction, totalW]);
+  const animClass = direction === "left" ? "scroll-left" : "scroll-right";
 
   return (
-    <div ref={ref} className="overflow-hidden">
-      <motion.div
-        animate={controls}
-        className="flex"
+    <div className="overflow-hidden w-full">
+      {/* Keyframes diinject via style tag */}
+      <style>{`
+        @keyframes scrollLeft {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes scrollRight {
+          0%   { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .scroll-left {
+          animation: scrollLeft ${DURATION}s linear infinite;
+          will-change: transform;
+        }
+        .scroll-right {
+          animation: scrollRight ${DURATION}s linear infinite;
+          will-change: transform;
+        }
+      `}</style>
+
+      <div
+        className={`flex ${animClass}`}
         style={{ gap: GAP, width: "max-content" }}
       >
-        {photos.map((p, i) => (
+        {doubled.map((p, i) => (
           <div
             key={i}
             className="relative shrink-0 overflow-hidden rounded-2xl"
@@ -84,11 +82,12 @@ function AutoScrollStrip({ photos, direction = "left" }: AutoScrollStripProps) {
               src={p.src}
               alt={p.alt}
               className="h-full w-full object-cover object-top"
+              loading="lazy"
               draggable={false}
             />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -145,7 +144,7 @@ function PersonBlock({
           className="text-3xl text-[#2C2017]"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
         >
-          {name}
+          {name}, <span className="text-2xl">{degree}</span>
         </h2>
         <div className="mb-2 mt-1 h-0.5 w-10 bg-[#8B7355]" />
         <p
@@ -205,8 +204,8 @@ export default function ProfileSection() {
         index={0}
         label="MEMPELAI WANITA"
         name="Amelia Firdausya"
-        degree="S.Pd"
-        role="Putri pertama dari"
+        degree="S.H"
+        role="Putri Ketiga dari"
         parent="Bpk. H. Abdullah Syahid & Ibu Hj. Aisyah"
         photos={BRIDE_PHOTOS}
         scrollDirection="left"
@@ -220,7 +219,7 @@ export default function ProfileSection() {
         index={1}
         label="MEMPELAI PRIA"
         name="Firdan Nursalfah Toni"
-        degree="S.Kom"
+        degree="S.Tr.Kom"
         role="Putra pertama dari"
         parent="Bpk. Deden Komarudin & Ibu Neneng Susanti"
         photos={GROOM_PHOTOS}

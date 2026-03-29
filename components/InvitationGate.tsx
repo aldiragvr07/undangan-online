@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -12,6 +12,21 @@ export default function InvitationGate({
   const [opened, setOpened] = useState(false);
   const searchParams = useSearchParams();
   const guestName = searchParams.get("to");
+
+  // Setiap kali gate muncul (refresh/pertama buka), pastikan scroll ke atas
+  useEffect(() => {
+    if (!opened) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [opened]);
+
+  const handleOpen = () => {
+    setOpened(true);
+    // Scroll ke atas konten setelah gate hilang
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }, 850); // setelah animasi exit selesai
+  };
 
   return (
     <>
@@ -170,7 +185,7 @@ export default function InvitationGate({
                 transition={{ delay: 1.2, duration: 0.7 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => setOpened(true)}
+                onClick={() => handleOpen()}
                 className="mt-4 flex items-center gap-3 rounded-full border px-8 py-3 text-sm tracking-widest uppercase transition-colors"
                 style={{
                   borderColor: "#C4A882",

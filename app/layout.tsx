@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Great_Vibes, Playfair_Display, Cormorant_Garamond, Lora, Montserrat } from "next/font/google";
+import MusicPlayer from "@/components/ui/MusicPlayer";
 import "./globals.css";
 
 const greatVibes = Great_Vibes({
@@ -37,10 +38,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Undangan Pernikahan | Ahmad Fauzi & Siti Nurhaliza",
+  title: "Undangan Pernikahan | Firdan & Amelia",
   description: "Dengan penuh kebahagiaan kami mengundang Anda untuk hadir di pernikahan kami pada 30 & 31 Mei 2026.",
   openGraph: {
-    title: "Undangan Pernikahan Ahmad Fauzi & Siti Nurhaliza",
+    title: "Undangan Pernikahan Firdan & Amelia",
     description: "30 & 31 Mei 2026 · Jakarta Selatan",
     type: "website",
   },
@@ -56,7 +57,10 @@ export default function RootLayout({
       lang="id"
       className={`h-full ${greatVibes.variable} ${playfair.variable} ${cormorant.variable} ${lora.variable} ${montserrat.variable}`}
     >
-      <body className="min-h-full antialiased bg-[#FAF3E8]">{children}</body>
+      <body className="min-h-full antialiased bg-[#FAF3E8]" suppressHydrationWarning>
+        {children}
+        <MusicPlayer />
+      </body>
     </html>
   );
 }
