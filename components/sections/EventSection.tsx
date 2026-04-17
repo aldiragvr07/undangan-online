@@ -149,19 +149,6 @@ export default function EventSection() {
       <div className="flex flex-col gap-6 px-5 py-8">
         <EventCard
           index={0}
-          title="Akad Nikah"
-          date="30"
-          dayName="Sabtu"
-          month="Mei"
-          year="2026"
-          time="09.00 – 10.00 WIB"
-          venue="Kediaman Mempelai Wanita"
-          address="Jl. Contoh No. 1, Jakarta Selatan"
-          mapUrl="https://maps.google.com"
-          photoSrc="/foto-cover.jpg"
-        />
-        <EventCard
-          index={1}
           title="Resepsi"
           date="31"
           dayName="Minggu"
