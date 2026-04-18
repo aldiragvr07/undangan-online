@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import FloralOrnament from "@/components/ui/FloralOrnament";
 import FloatingPetals from "@/components/ui/FloatingPetals";
 
@@ -9,10 +10,14 @@ export default function CoverSection() {
     <section className="relative flex min-h-screen w-full flex-col items-end justify-end overflow-hidden">
       {/* Full-screen background photo */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/foto-cover.jpg"
           alt="Cover"
-          className="h-full w-full object-cover object-center"
+          fill
+          preload
+          quality={72}
+          sizes="100vw"
+          className="object-cover object-center"
         />
         {/* Dark gradient overlay - stronger at bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />

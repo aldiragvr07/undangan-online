@@ -14,7 +14,14 @@ interface BankAccount {
 
 function CopyIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
     </svg>
@@ -23,7 +30,14 @@ function CopyIcon() {
 
 function CheckIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+    >
       <polyline points="20 6 9 17 4 12" />
     </svg>
   );
@@ -56,10 +70,16 @@ function AccountCard({ account }: { account: BankAccount }) {
           </span>
         </div>
         <div>
-          <p className="text-xs text-[#9B8B78]" style={{ fontFamily: "'Montserrat',sans-serif" }}>
+          <p
+            className="text-xs text-[#9B8B78]"
+            style={{ fontFamily: "'Montserrat',sans-serif" }}
+          >
             A/N
           </p>
-          <p className="text-sm font-semibold text-[#6B4F36]" style={{ fontFamily: "'Playfair Display',serif" }}>
+          <p
+            className="text-sm font-semibold text-[#6B4F36]"
+            style={{ fontFamily: "'Playfair Display',serif" }}
+          >
             {account.name}
           </p>
         </div>
@@ -126,7 +146,7 @@ const accounts: BankAccount[] = [
 export default function GiftSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#FAF3E8] px-6 py-20">
-      <FloralOrnament position="top-right"   size={120} opacity={0.3} />
+      <FloralOrnament position="top-right" size={120} opacity={0.3} />
       <FloralOrnament position="bottom-left" size={120} opacity={0.3} />
       <FloatingPetals count={8} />
       <motion.div
@@ -152,7 +172,8 @@ export default function GiftSection() {
           className="mx-auto mt-4 max-w-xs text-xs leading-loose text-[#9B8B78]"
           style={{ fontFamily: "'Lora', serif" }}
         >
-          Jika Bapak/Ibu/Saudara/i ingin memberikan hadiah, dengan rendah hati kami menerima melalui rekening berikut:
+          Jika Bapak/Ibu/Saudara/i ingin memberikan hadiah, dengan rendah hati
+          kami menerima melalui rekening berikut:
         </p>
       </motion.div>
 
@@ -193,7 +214,7 @@ export default function GiftSection() {
           className="mt-2 text-xs text-[#9B8B78]"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          30 & 31 Mei 2026
+          31 Mei 2026
         </p>
       </motion.div>
     </section>

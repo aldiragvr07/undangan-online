@@ -1,15 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const BRIDE_PROFILE = {
   src: "/foto-profile-amel.JPG",
   alt: "Amelia Firdausya",
+  objectPosition: "100% 85%",
 };
 
 const GROOM_PROFILE = {
   src: "/foto-profile-firdan.JPG",
   alt: "Firdan Nursalfah Toni",
+  objectPosition: "70% 38%",
 };
 
 interface PersonBlockProps {
@@ -18,12 +21,21 @@ interface PersonBlockProps {
   degree: string;
   role: string;
   parent: string;
-  photo: { src: string; alt: string };
+  photo: { src: string; alt: string; objectPosition: string };
   index: number;
   compactName?: boolean;
 }
 
-function PersonBlock({ label, name, degree, role, parent, photo, index, compactName = false }: PersonBlockProps) {
+function PersonBlock({
+  label,
+  name,
+  degree,
+  role,
+  parent,
+  photo,
+  index,
+  compactName = false,
+}: PersonBlockProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -42,10 +54,19 @@ function PersonBlock({ label, name, degree, role, parent, photo, index, compactN
 
         <h2
           className={`mt-5 text-[#2C2017] ${compactName ? "text-[2rem] leading-none" : "text-[2.35rem] leading-tight"}`}
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: "italic",
+          }}
         >
-          <span className={compactName ? "whitespace-nowrap" : undefined}>{name}</span>
-          <span className={`ml-2 text-[#8B7355] ${compactName ? "text-[1.35rem]" : "text-[1.7rem]"}`}>{degree}</span>
+          <span className={compactName ? "whitespace-nowrap" : undefined}>
+            {name}
+          </span>
+          <span
+            className={`ml-2 text-[#8B7355] ${compactName ? "text-[1.35rem]" : "text-[1.7rem]"}`}
+          >
+            {degree}
+          </span>
         </h2>
 
         <div className="mx-auto mt-4 h-0.5 w-14 bg-[#C4A882]" />
@@ -66,10 +87,15 @@ function PersonBlock({ label, name, degree, role, parent, photo, index, compactN
         <div className="relative mt-7">
           <div className="absolute inset-x-7 -top-3 h-full rounded-[30px] bg-[#DCC5A5]/55 blur-2xl" />
           <div className="relative overflow-hidden rounded-[30px] border border-[#DED0BD] bg-[#F7F0E6] p-3 shadow-[0_22px_60px_rgba(107,91,78,0.14)]">
-            <img
+            <Image
               src={photo.src}
               alt={photo.alt}
-              className="aspect-[4/5] w-full rounded-[24px] object-cover object-top"
+              width={960}
+              height={1200}
+              quality={72}
+              sizes="(max-width: 480px) calc(100vw - 72px), 360px"
+              className="aspect-[4/5] h-auto w-full rounded-[24px] object-cover object-top"
+              style={{ objectPosition: photo.objectPosition }}
               draggable={false}
             />
           </div>
@@ -98,7 +124,10 @@ export default function ProfileSection() {
         <div className="mt-4 flex items-start gap-4">
           <h2
             className="text-3xl leading-snug text-[#3D2B1F]"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+            }}
           >
             Mempelai
           </h2>
@@ -119,7 +148,7 @@ export default function ProfileSection() {
         name="Amelia Firdausya"
         degree="S.H"
         role="Putri Ketiga dari"
-        parent="Bpk. H. Abdullah Syahid & Ibu Hj. Aisyah"
+        parent="Bpk. Ujang Wawan & Ibu Aas Kurniawati"
         photo={BRIDE_PROFILE}
       />
 

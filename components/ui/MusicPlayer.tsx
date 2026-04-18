@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ─── GANTI PATH LAGU DI SINI ────────────────────────────────────────────────
@@ -15,6 +15,26 @@ export default function MusicPlayer() {
   const [ready, setReady] = useState(false);
   const [showHint, setShowHint] = useState(true);
 
+  const startPlayback = useCallback(async () => {
+    const audio = audioRef.current;
+    if (!audio) return false;
+
+    try {
+      if (audio.readyState < 2) {
+        audio.load();
+      }
+
+      await audio.play();
+      setPlaying(true);
+      setReady(true);
+      setShowHint(false);
+      return true;
+    } catch {
+      setReady(audio.readyState >= 2);
+      return false;
+    }
+  }, []);
+
   // Auto-hide hint after 4 detik
   useEffect(() => {
     const t = setTimeout(() => setShowHint(false), 4000);
@@ -25,33 +45,72 @@ export default function MusicPlayer() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
     audio.loop = true;
     audio.volume = 0.5;
-    audio.addEventListener("canplaythrough", () => setReady(true));
-    return () => audio.pause();
+
+    const markReady = () => setReady(true);
+    const markPlaying = () => setPlaying(true);
+    const markPaused = () => setPlaying(false);
+
+    if (audio.readyState >= 2) {
+      setReady(true);
+    }
+
+    audio.addEventListener("canplay", markReady);
+    audio.addEventListener("canplaythrough", markReady);
+    audio.addEventListener("loadeddata", markReady);
+    audio.addEventListener("play", markPlaying);
+    audio.addEventListener("pause", markPaused);
+    audio.addEventListener("ended", markPaused);
+
+    return () => {
+      audio.pause();
+      audio.removeEventListener("canplay", markReady);
+      audio.removeEventListener("canplaythrough", markReady);
+      audio.removeEventListener("loadeddata", markReady);
+      audio.removeEventListener("play", markPlaying);
+      audio.removeEventListener("pause", markPaused);
+      audio.removeEventListener("ended", markPaused);
+    };
   }, []);
+
+  useEffect(() => {
+    const handleInvitationOpened = () => {
+      void startPlayback();
+    };
+
+    const handleFirstInteraction = () => {
+      void startPlayback();
+    };
+
+    window.addEventListener("invitation:opened", handleInvitationOpened);
+    window.addEventListener("pointerdown", handleFirstInteraction, { once: true });
+    window.addEventListener("keydown", handleFirstInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener("invitation:opened", handleInvitationOpened);
+      window.removeEventListener("pointerdown", handleFirstInteraction);
+      window.removeEventListener("keydown", handleFirstInteraction);
+    };
+  }, [startPlayback]);
 
   const toggle = async () => {
     const audio = audioRef.current;
     if (!audio) return;
+
     if (playing) {
       audio.pause();
       setPlaying(false);
     } else {
-      try {
-        await audio.play();
-        setPlaying(true);
-        setShowHint(false);
-      } catch {
-        // autoplay blocked
-      }
+      await startPlayback();
     }
   };
 
   return (
     <>
       {/* Hidden audio element */}
-      <audio ref={audioRef} src={MUSIC_SRC} preload="auto" />
+      <audio ref={audioRef} src={MUSIC_SRC} preload="none" data-wedding-music="true" />
 
       {/* Floating button */}
       <motion.div
@@ -81,9 +140,8 @@ export default function MusicPlayer() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggle}
-          disabled={!ready}
           aria-label={playing ? "Pause musik" : "Putar musik"}
-          className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#6B4F36] shadow-xl disabled:opacity-50"
+          className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#6B4F36] shadow-xl"
           style={{ border: "2px solid #C4A882" }}
         >
           {/* Ripple animation when playing */}
@@ -136,6 +194,15 @@ export default function MusicPlayer() {
             )}
           </AnimatePresence>
         </motion.button>
+
+        {!ready && (
+          <p
+            className="max-w-28 text-right text-[10px] tracking-wide text-[#6B4F36]/75"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            Menyiapkan musik...
+          </p>
+        )}
       </motion.div>
     </>
   );

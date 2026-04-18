@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface EventCardProps {
   title: string;
@@ -13,12 +14,23 @@ interface EventCardProps {
   address: string;
   mapUrl: string;
   photoSrc: string;
+  photoPosition?: string;
   index: number;
 }
 
 function EventCard({
-  title, date, dayName, month, year,
-  time, venue, address, mapUrl, photoSrc, index,
+  title,
+  date,
+  dayName,
+  month,
+  year,
+  time,
+  venue,
+  address,
+  mapUrl,
+  photoSrc,
+  photoPosition = "center center",
+  index,
 }: EventCardProps) {
   return (
     <motion.div
@@ -26,23 +38,24 @@ function EventCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.8, delay: index * 0.15 }}
-      className="relative w-full overflow-hidden rounded-3xl bg-[#F5ECD8] shadow-md"
+      className="relative w-full overflow-hidden rounded-[30px] border border-[#E7D6BF] bg-[#F6EEDC] shadow-[0_16px_38px_rgba(93,75,53,0.16)]"
     >
-      {/* Top photo */}
-      <div className="relative h-56 w-full overflow-hidden">
-        <img
+      <div className="relative h-[460px] w-full overflow-hidden rounded-t-[30px] bg-[#E9DDC7]">
+        <Image
           src={photoSrc}
           alt={title}
-          className="h-full w-full object-cover"
+          fill
+          quality={72}
+          sizes="(max-width: 480px) 100vw, 480px"
+          className="object-cover"
+          style={{ objectPosition: photoPosition }}
         />
       </div>
 
-      {/* Content block */}
       <div className="flex items-stretch">
-        {/* Left: vertical event name */}
-        <div className="flex w-12 shrink-0 items-center justify-center bg-[#8B7355]">
+        <div className="flex w-[48px] shrink-0 items-center justify-center bg-[#9C835E]">
           <p
-            className="whitespace-nowrap text-[11px] font-medium tracking-[0.3em] text-white"
+            className="whitespace-nowrap text-[11px] font-medium tracking-[0.32em] text-white/95"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontStyle: "italic",
@@ -56,56 +69,79 @@ function EventCard({
           </p>
         </div>
 
-        {/* Right: details */}
-        <div className="flex-1 px-5 py-5">
-          {/* Date block */}
-          <div className="mb-4 flex items-start gap-4">
+        <div className="flex-1 px-5 pb-5 pt-6 sm:px-6">
+          <div className="mb-5 flex items-start gap-4">
             <p
-              className="text-5xl font-light text-[#3D2B1F] leading-none"
+              className="leading-none text-[3.5rem] font-light text-[#5A381C]"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               {date}
             </p>
-            <div className="flex flex-col pt-1" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-              <p className="text-xs font-semibold text-[#8B7355]">{dayName}</p>
-              <p className="text-xs text-[#9B8B78]">{month}</p>
-              <p className="text-xs text-[#9B8B78]">{year}</p>
+            <div
+              className="flex flex-col pt-1"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              <p className="text-[0.95rem] font-semibold leading-tight text-[#BF9555]">
+                {dayName}
+              </p>
+              <p className="text-[0.95rem] leading-tight text-[#B8A48A]">
+                {month}
+              </p>
+              <p className="text-[0.95rem] leading-tight text-[#B8A48A]">
+                {year}
+              </p>
             </div>
           </div>
-          <div className="mb-4 h-px bg-[#C4A882]" />
+          <div className="mb-5 h-px bg-[#C7AF86]" />
 
-          {/* Time */}
-          <div className="mb-4 flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8B7355" strokeWidth="1.8">
+          <div className="mb-5 flex items-center gap-2.5 text-[#6C5640]">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#A48A63"
+              strokeWidth="1.8"
+            >
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
-            <p className="text-sm text-[#6B5B4E]" style={{ fontFamily: "'Lora', serif" }}>
+            <p
+              className="text-[1.02rem] text-[#7A6144]"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
               {time}
             </p>
           </div>
 
-          {/* Venue */}
-          <div className="mb-4">
-            <p className="mb-1 text-xs font-bold tracking-widest text-[#3D2B1F]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+          <div className="mb-5">
+            <p
+              className="mb-1.5 text-[0.8rem] font-bold tracking-[0.12em] text-[#2F1E12]"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
               LOKASI ACARA
             </p>
-            <p className="mb-0.5 text-sm font-semibold text-[#3D2B1F]" style={{ fontFamily: "'Lora', serif" }}>
+            <p
+              className="mb-1 text-[1.03rem] font-semibold leading-snug text-[#422A18]"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
               {venue}
             </p>
-            <p className="text-xs leading-relaxed text-[#9B8B78]" style={{ fontFamily: "'Lora', serif" }}>
+            <p
+              className="max-w-[250px] text-[0.97rem] leading-relaxed text-[#9F896D]"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
               {address}
             </p>
           </div>
 
-          {/* Maps button */}
           <motion.a
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             href={mapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded border border-[#6B5B4E] px-5 py-2 text-xs font-semibold tracking-widest text-[#3D2B1F] transition-colors hover:bg-[#6B5B4E] hover:text-white"
+            className="inline-flex min-h-[42px] items-center justify-center rounded-[4px] border border-[#8E714C] px-5 py-2 text-[0.82rem] font-semibold tracking-[0.18em] text-[#4A311F] transition-colors hover:bg-[#8E714C] hover:text-white"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             GOOGLE MAPS
@@ -130,9 +166,14 @@ export default function EventSection() {
         <div className="flex items-start gap-4">
           <h2
             className="text-3xl leading-snug text-white"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+            }}
           >
-            Acara<br />Pernikahan
+            Acara
+            <br />
+            Pernikahan
           </h2>
           <div className="mt-4 flex-1 border-t border-white/30" />
         </div>
@@ -140,8 +181,9 @@ export default function EventSection() {
           className="mt-4 text-sm leading-relaxed text-white/70"
           style={{ fontFamily: "'Lora', serif" }}
         >
-          Dengan segala kerendahan hati kami bermaksud ingin mengundang Bapak/Ibu/Saudara/i sekalian guna hadir
-          didalam acara pernikahan kami yang akan diselenggarakan pada:
+          Dengan segala kerendahan hati kami bermaksud ingin mengundang
+          Bapak/Ibu/Saudara/i sekalian guna hadir didalam acara pernikahan kami
+          yang akan diselenggarakan pada:
         </p>
       </motion.div>
 
@@ -157,8 +199,9 @@ export default function EventSection() {
           time="11.00 – 14.00 WIB"
           venue="Gedung Serbaguna Cendrawasih"
           address="Jl. Mawar No. 45, Jakarta Selatan"
-          mapUrl="https://maps.google.com"
-          photoSrc="/foto-cover.jpg"
+          mapUrl="https://www.google.com/maps/search/?api=1&query=-6.992191304664199,107.74682459457573"
+          photoSrc="/fotoedit/IMG_5017.JPG"
+          photoPosition="center 32%"
         />
       </div>
     </section>

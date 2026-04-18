@@ -1,19 +1,94 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 import FloralOrnament from "@/components/ui/FloralOrnament";
 
 const photos = [
-  { src: "/foto-cover.jpg", alt: "Firdan dan Amelia", rotate: -1.8, height: "h-[210px]" },
-  { src: "/foto-profile-amel.JPG", alt: "Amelia", rotate: 1.6, height: "h-[205px]" },
-  { src: "/foto-profile-firdan.JPG", alt: "Firdan", rotate: 0.8, height: "h-[190px]" },
-  { src: "/foto-cover.jpg", alt: "Firdan dan Amelia kedua", rotate: -2.2, height: "h-[220px]" },
-  { src: "/foto-profile-amel.JPG", alt: "Amelia kedua", rotate: -1.2, height: "h-[225px]" },
-  { src: "/foto-profile-firdan.JPG", alt: "Firdan kedua", rotate: 1.4, height: "h-[195px]" },
+  {
+    src: "/fotoedit/IMG_5016.JPG",
+    alt: "Galeri foto 1",
+    rotate: -1.8,
+    height: "h-[210px]",
+  },
+  {
+    src: "/fotoedit/IMG_5004.JPG",
+    alt: "Galeri foto 2",
+    rotate: 1.6,
+    height: "h-[205px]",
+  },
+  {
+    src: "/fotoedit/IMG_5008.JPG",
+    alt: "Galeri foto 3",
+    rotate: 0.8,
+    height: "h-[190px]",
+  },
+  {
+    src: "/fotoedit/IMG_5019.JPG",
+    alt: "Galeri foto 4",
+    rotate: -2.2,
+    height: "h-[220px]",
+  },
+  {
+    src: "/fotoedit/IMG_5023.JPG",
+    alt: "Galeri foto 5",
+    rotate: -1.2,
+    height: "h-[225px]",
+  },
+  {
+    src: "/fotoedit/IMG_5012.JPG",
+    alt: "Galeri foto 6",
+    rotate: 1.4,
+    height: "h-[195px]",
+  },
+  {
+    src: "/fotoedit/IMG_5006.JPG",
+    alt: "Galeri foto 7",
+    rotate: -1.1,
+    height: "h-[210px]",
+  },
+  {
+    src: "/fotoedit/IMG_5020.JPG",
+    alt: "Galeri foto 8",
+    rotate: 1.7,
+    height: "h-[220px]",
+  },
+  {
+    src: "/fotoedit/IMG_5024.JPG",
+    alt: "Galeri foto 9",
+    rotate: -0.9,
+    height: "h-[200px]",
+  },
+  {
+    src: "/fotoedit/IMG_5007.JPG",
+    alt: "Galeri foto 10",
+    rotate: -0.9,
+    height: "h-[200px]",
+  },
+  {
+    src: "/fotoedit/IMG_5010.JPG",
+    alt: "Galeri foto 11",
+    rotate: -0.9,
+    height: "h-[200px]",
+  },
+  {
+    src: "/fotoedit/IMG_5014.JPG",
+    alt: "Galeri foto 12",
+    rotate: -0.9,
+    height: "h-[200px]",
+  },
 ];
 
-function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+function Lightbox({
+  src,
+  alt,
+  onClose,
+}: {
+  src: string;
+  alt: string;
+  onClose: () => void;
+}) {
   return (
     <AnimatePresence>
       <motion.div
@@ -33,7 +108,14 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
           onClick={onClose}
           aria-label="Tutup foto"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          >
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
@@ -48,7 +130,16 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
           className="relative max-h-[88vh] max-w-full overflow-hidden rounded-[28px] border border-white/15 shadow-2xl"
           onClick={(event) => event.stopPropagation()}
         >
-          <img src={src} alt={alt} className="max-h-[88vh] max-w-[92vw] object-contain" draggable={false} />
+          <Image
+            src={src}
+            alt={alt}
+            width={1600}
+            height={2200}
+            quality={80}
+            sizes="92vw"
+            className="max-h-[88vh] max-w-[92vw] object-contain"
+            draggable={false}
+          />
         </motion.div>
       </motion.div>
     </AnimatePresence>
@@ -56,7 +147,9 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
 }
 
 export default function GallerySection() {
-  const [selected, setSelected] = useState<{ src: string; alt: string } | null>(null);
+  const [selected, setSelected] = useState<{ src: string; alt: string } | null>(
+    null,
+  );
 
   return (
     <section className="relative w-full overflow-hidden bg-[#FAF3E8] px-5 pb-14 pt-12">
@@ -73,7 +166,10 @@ export default function GallerySection() {
         <div className="flex items-center gap-4">
           <h2
             className="text-4xl text-[#3D2B1F]"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+            }}
           >
             Galeri
           </h2>
@@ -97,10 +193,13 @@ export default function GallerySection() {
             style={{ rotate: `${photo.rotate}deg` }}
             aria-label={`Lihat foto ${photo.alt}`}
           >
-            <img
+            <Image
               src={photo.src}
               alt={photo.alt}
-              className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              fill
+              quality={68}
+              sizes="(max-width: 480px) 44vw, 220px"
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               draggable={false}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/12 via-transparent to-white/10" />
@@ -108,7 +207,13 @@ export default function GallerySection() {
         ))}
       </div>
 
-      {selected && <Lightbox src={selected.src} alt={selected.alt} onClose={() => setSelected(null)} />}
+      {selected && (
+        <Lightbox
+          src={selected.src}
+          alt={selected.alt}
+          onClose={() => setSelected(null)}
+        />
+      )}
     </section>
   );
 }
