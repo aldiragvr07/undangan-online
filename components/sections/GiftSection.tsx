@@ -216,6 +216,12 @@ export default function GiftSection() {
         >
           31 Mei 2026
         </p>
+        <p
+          className="mt-8 text-[10px] uppercase tracking-[0.28em] text-[#B7A289]"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          dirskie.dev
+        </p>
       </motion.div>
     </section>
   );
