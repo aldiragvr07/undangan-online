@@ -201,7 +201,7 @@ export default function EventSection() {
           address="
 Jl. Yasaadi RT 003/RW 001, Ds.Sukamanah, Kec. Rancaekek, Bandung."
           mapUrl="https://www.google.com/maps/search/?api=1&query=-6.992191304664199,107.74682459457573"
-          photoSrc="/fotoedit/IMG_50244.JPG"
+          photoSrc="/fotoedit/IMG_5022.JPG"
           photoPosition="center 32%"
         />
       </div>
