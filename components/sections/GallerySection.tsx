@@ -55,7 +55,7 @@ const photos = [
     height: "h-[220px]",
   },
   {
-    src: "/fotoedit/IMG_5024.JPG",
+    src: "/fotoedit/IMG_5022.JPG",
     alt: "Galeri foto 9",
     rotate: -0.9,
     height: "h-[200px]",

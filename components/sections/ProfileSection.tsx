@@ -147,8 +147,8 @@ export default function ProfileSection() {
         label="Mempelai Wanita"
         name="Amelia Firdausya"
         degree="S.H"
-        role="Putri Ketiga dari"
-        parent="Bpk. Ujang Wawan & Ibu Aas Kurniawati"
+        role="Putri Bungsu dari"
+        parent="Bpk. Wana Ridwan (alm) / Bpk. Ujang Wawan & Ibu Aas Kurniawati"
         photo={BRIDE_PROFILE}
       />
 

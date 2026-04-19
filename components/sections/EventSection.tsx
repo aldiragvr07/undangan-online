@@ -196,11 +196,12 @@ export default function EventSection() {
           dayName="Minggu"
           month="Mei"
           year="2026"
-          time="11.00 – 14.00 WIB"
-          venue="Gedung Serbaguna Cendrawasih"
-          address="Jl. Mawar No. 45, Jakarta Selatan"
+          time="10.00 s/d. selesai"
+          venue="Halaman Madrasah Nurul Hidayah"
+          address="
+Jl. Yasaadi RT 003/RW 001, Ds.Sukamanah, Kec. Rancaekek, Bandung."
           mapUrl="https://www.google.com/maps/search/?api=1&query=-6.992191304664199,107.74682459457573"
-          photoSrc="/fotoedit/IMG_5017.JPG"
+          photoSrc="/fotoedit/IMG_50244.JPG"
           photoPosition="center 32%"
         />
       </div>

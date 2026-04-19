@@ -58,18 +58,18 @@ function AccountCard({ account }: { account: BankAccount }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="flex w-full max-w-sm flex-col gap-4 rounded-2xl bg-[#FAF3E8] p-6 shadow-sm"
+      className="flex w-full max-w-sm flex-col gap-4 rounded-2xl border border-[#E9DBC6] bg-[#FAF3E8] p-6 shadow-[0_10px_30px_rgba(107,79,54,0.08)]"
     >
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-16 items-center justify-center rounded-lg bg-[#6B4F36]">
+        <div className="flex h-10 min-w-[74px] items-center justify-center rounded-lg bg-[#6B4F36] px-3">
           <span
-            className="text-lg font-bold text-[#FAF3E8]"
+            className="text-sm font-bold tracking-[0.04em] text-[#FAF3E8]"
             style={{ fontFamily: "'Montserrat',sans-serif" }}
           >
             {account.bank}
           </span>
         </div>
-        <div>
+        <div className="min-w-0 flex-1">
           <p
             className="text-xs text-[#9B8B78]"
             style={{ fontFamily: "'Montserrat',sans-serif" }}
@@ -77,7 +77,7 @@ function AccountCard({ account }: { account: BankAccount }) {
             A/N
           </p>
           <p
-            className="text-sm font-semibold text-[#6B4F36]"
+            className="text-[0.95rem] font-semibold leading-tight text-[#6B4F36]"
             style={{ fontFamily: "'Playfair Display',serif" }}
           >
             {account.name}
@@ -130,15 +130,15 @@ function AccountCard({ account }: { account: BankAccount }) {
 
 const accounts: BankAccount[] = [
   {
-    bank: "BCA",
+    bank: "MANDIRI",
     name: "Firdan Nursalfah Toni",
-    number: "1234567890",
+    number: "1310020230050",
     logo: null,
   },
   {
-    bank: "BNI",
+    bank: "BCA",
     name: "Amelia Firdausya",
-    number: "0987654321",
+    number: "3760847011 ",
     logo: null,
   },
 ];

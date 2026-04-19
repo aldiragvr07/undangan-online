@@ -16,7 +16,7 @@ export default function CoverSection() {
           fill
           preload
           quality={72}
-          sizes="100vw"
+          sizes="(max-width: 480px) 100vw, 480px"
           className="object-cover object-center"
         />
         {/* Dark gradient overlay - stronger at bottom */}
