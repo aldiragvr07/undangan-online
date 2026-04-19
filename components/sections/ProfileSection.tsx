@@ -40,7 +40,7 @@ function PersonBlock({
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.2 }}
       transition={{ duration: 0.75, delay: index * 0.12 }}
       className="w-full bg-[#EEEBE6] px-6 pb-10 pt-9"
     >
@@ -111,7 +111,7 @@ export default function ProfileSection() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7 }}
         className="bg-[#FAF3E8] px-7 py-12"
       >

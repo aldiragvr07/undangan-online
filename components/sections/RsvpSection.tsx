@@ -118,7 +118,7 @@ export default function RsvpSection() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7 }}
         className="mb-10 text-center"
       >
@@ -159,7 +159,7 @@ export default function RsvpSection() {
             action={formAction}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="mx-auto flex max-w-sm flex-col gap-4"
           >
             <div className="flex flex-col gap-1">
@@ -220,7 +220,7 @@ export default function RsvpSection() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7, delay: 0.2 }}
         className="mx-auto mt-12 max-w-sm"
       >

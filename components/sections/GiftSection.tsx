@@ -56,7 +56,7 @@ function AccountCard({ account }: { account: BankAccount }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       transition={{ duration: 0.6 }}
       className="flex w-full max-w-sm flex-col gap-4 rounded-2xl border border-[#E9DBC6] bg-[#FAF3E8] p-6 shadow-[0_10px_30px_rgba(107,79,54,0.08)]"
     >
@@ -152,7 +152,7 @@ export default function GiftSection() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7 }}
         className="mb-10 text-center"
       >
@@ -187,7 +187,7 @@ export default function GiftSection() {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ delay: 0.4, duration: 0.7 }}
         className="mt-16 text-center"
       >

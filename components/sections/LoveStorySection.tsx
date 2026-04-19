@@ -51,7 +51,7 @@ export default function LoveStorySection() {
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7 }}
         className="relative mb-10 px-1"
       >
@@ -81,7 +81,7 @@ export default function LoveStorySection() {
         <motion.div
           initial={{ scaleY: 0 }}
           whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
           className="absolute left-4 top-0 h-full w-px origin-top bg-gradient-to-b from-[#C4A882] via-[#8B7355] to-[#C4A882]"
         />
@@ -92,7 +92,7 @@ export default function LoveStorySection() {
               key={i}
               initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.3 }}
               transition={{ duration: 0.6, delay: i * 0.12 }}
               className="relative flex items-start gap-5"
             >
@@ -100,7 +100,7 @@ export default function LoveStorySection() {
               <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{
                   delay: i * 0.12 + 0.25,
                   type: "spring",
@@ -156,7 +156,7 @@ export default function LoveStorySection() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.8 }}
         className="relative mt-10 rounded-2xl bg-[#E6D0BA] px-6 py-6 text-center"
       >

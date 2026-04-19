@@ -15,7 +15,7 @@ export default function FloralDivider({
     <motion.div
       initial={{ opacity: 0, scaleX: 0.4 }}
       whileInView={{ opacity: 1, scaleX: 1 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       transition={{ duration: 0.9, ease: "easeOut" }}
       className="flex w-full items-center justify-center py-2"
       style={{ backgroundColor: bgColor }}

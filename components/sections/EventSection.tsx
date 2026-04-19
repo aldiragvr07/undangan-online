@@ -36,11 +36,11 @@ function EventCard({
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.8, delay: index * 0.15 }}
       className="relative w-full overflow-hidden rounded-[30px] border border-[#E7D6BF] bg-[#F6EEDC] shadow-[0_16px_38px_rgba(93,75,53,0.16)]"
     >
-      <div className="relative h-[460px] w-full overflow-hidden rounded-t-[30px] bg-[#E9DDC7]">
+      <div className="relative h-[560px] w-full overflow-hidden rounded-t-[30px] bg-[#E9DDC7]">
         <Image
           src={photoSrc}
           alt={title}
@@ -159,7 +159,7 @@ export default function EventSection() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7 }}
         className="bg-[#8B7355] px-7 py-12"
       >

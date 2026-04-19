@@ -159,7 +159,7 @@ export default function GallerySection() {
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7 }}
         className="mb-8 px-2"
       >
@@ -184,7 +184,7 @@ export default function GallerySection() {
             type="button"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.6, delay: index * 0.06 }}
             whileHover={{ scale: 1.03, rotate: 0 }}
             whileTap={{ scale: 0.98 }}

@@ -37,7 +37,8 @@ export default function CoverSection() {
         {/* "The Wedding Of" label */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.55 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           className="mb-2 text-sm tracking-[0.25em] text-white/70"
           style={{ fontFamily: "'Lora', serif" }}
@@ -48,7 +49,8 @@ export default function CoverSection() {
         {/* Couple names */}
         <motion.h1
           initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.55 }}
           transition={{ delay: 0.5, duration: 0.9 }}
           className="mb-8 text-5xl font-light leading-tight text-white"
           style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
@@ -62,7 +64,8 @@ export default function CoverSection() {
         {/* Save to calendar */}
         <motion.a
           initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.55 }}
           transition={{ delay: 1.2, duration: 0.7 }}
           href={`data:text/calendar;charset=utf8,BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:20260530T030000Z\nDTEND:20260530T070000Z\nSUMMARY:Pernikahan Firdan & Amelia\nLOCATION:Jakarta Selatan\nEND:VEVENT\nEND:VCALENDAR`}
           download="undangan.ics"
@@ -125,7 +128,8 @@ function CountdownInline() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.55 }}
       transition={{ delay: 0.8, duration: 0.7 }}
       className="flex gap-3"
     >
