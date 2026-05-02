@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const BRIDE_PROFILE = {
-  src: "/foto-profile-amel.JPG",
+  src: "/fotoedit/IMG_3232.JPG",
   alt: "Amelia Firdausya",
   objectPosition: "100% 85%",
 };

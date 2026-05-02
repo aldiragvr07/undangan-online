@@ -40,6 +40,11 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Undangan Pernikahan | Firdan & Amelia",
   description: "Dengan penuh kebahagiaan kami mengundang Anda untuk hadir di pernikahan kami pada 30 & 31 Mei 2026.",
+  icons: {
+    icon: "/logo-icon.png",
+    shortcut: "/logo-icon.png",
+    apple: "/logo-icon.png",
+  },
   openGraph: {
     title: "Undangan Pernikahan Firdan & Amelia",
     description: "30 & 31 Mei 2026 · Jakarta Selatan",

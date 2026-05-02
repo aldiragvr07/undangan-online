@@ -102,7 +102,7 @@ export default function CountdownSection() {
           className="mt-2 text-sm text-[#C4A882]"
           style={{ fontFamily: "'Lora', serif" }}
         >
-          Sabtu, 30 Mei 2026
+          Minggu, 31 Mei 2026
         </p>
       </motion.div>
 
