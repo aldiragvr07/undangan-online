@@ -1,7 +1,9 @@
 import dotenv from "dotenv";
-dotenv.config({ path: ".env.local" });
+import path from "node:path";
+import { defineConfig } from "prisma/config";
 
-import { defineConfig, env } from "prisma/config";
+// Load .env.local untuk development lokal (di Vercel, env vars sudah ada di process.env)
+dotenv.config({ path: path.resolve(process.cwd(), ".env.local") });
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
@@ -9,6 +11,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: env("DIRECT_URL"),
+    url: process.env.DIRECT_URL!,
   },
 });
