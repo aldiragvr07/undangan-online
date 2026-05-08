@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Undangan Pernikahan Firdan & Amelia",
-    description: "30 & 31 Mei 2026 · Jakarta Selatan",
+    description: "31 Mei 2026 · Bandung",
     type: "website",
   },
 };
