@@ -1,6 +1,6 @@
 "use server";
 
-import { supabase } from "@/lib/supabase";
+import { prisma } from "@/lib/prisma";
 
 export interface RSVPEntry {
   id: string;
@@ -11,17 +11,28 @@ export interface RSVPEntry {
 }
 
 export async function getMessages(): Promise<RSVPEntry[]> {
-  const { data, error } = await supabase
-    .from("rsvp")
-    .select("id, name, attendance, message, createdAt")
-    .not("message", "is", null)
-    .order("createdAt", { ascending: false })
-    .limit(30);
+  try {
+    const data = await prisma.rsvp.findMany({
+      where: {
+        message: { not: null },
+      },
+      select: {
+        id: true,
+        name: true,
+        attendance: true,
+        message: true,
+        createdAt: true,
+      },
+      orderBy: { createdAt: "desc" },
+      take: 30,
+    });
 
-  if (error) {
-    console.error("[Messages] Supabase error:", error.message);
+    return data.map((entry) => ({
+      ...entry,
+      createdAt: entry.createdAt.toISOString(),
+    }));
+  } catch (error) {
+    console.error("[Messages] Prisma error:", error);
     return [];
   }
-
-  return (data ?? []) as RSVPEntry[];
 }
