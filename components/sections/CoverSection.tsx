@@ -11,7 +11,7 @@ export default function CoverSection() {
       {/* Full-screen background photo */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/IMG_6147.jpg"
+          src="/IMG_6147.JPG"
           alt="Cover"
           fill
           preload
