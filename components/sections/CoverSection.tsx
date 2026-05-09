@@ -17,7 +17,7 @@ export default function CoverSection() {
           preload
           quality={72}
           sizes="(max-width: 480px) 100vw, 480px"
-          className="object-cover object-center"
+          className="object-cover object-center scale-[1.15]"
         />
         {/* Dark gradient overlay - stronger at bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
